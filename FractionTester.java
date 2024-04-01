@@ -6,10 +6,10 @@ DELA CRUZ, Andrei Nicole J.
 GARCIA, John Michael C.
 HABAN, Zyryll Kurt S.
 KERCHATEN, Ma. Louella Felicidad B.
-
+NAME OF INSTRUCTOR:
+Sir Dalos D. Miguel
 Course and Class Code: CS 122/ CS122L 9308 A/B
-
-Class Schedule: 2:30-3:30 MTH
+Class Schedule: 2:30-3:30 MTH 1:30-3:00 TF(LAB)
 */
 package edu.slu.prog2;
 
@@ -17,15 +17,14 @@ import java.util.Scanner;
 
 public class FractionTester {
     static Scanner kbd = new Scanner(System.in);
-
     /**
 ----
      */
     public static void main(String[] args) {
-        FractionTester groupTester;
+        FractionTester groupProgram;
         try {
-            groupTester = new FractionTester();
-            groupTester.run();
+            groupProgram = new FractionTester();
+            groupProgram.run();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
