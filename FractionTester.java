@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class FractionTester {
     static Scanner kbd = new Scanner(System.in);
+
     /**
 ----
      */
@@ -36,49 +37,42 @@ public class FractionTester {
     public void run() throws Exception {
         Fraction result = new Fraction();
         byte type = (byte) 0;
-        byte choice = (byte) 0;
-        System.out.println("Welcome to Fraction Tester!");
-        while (choice != 6) {
-            displayMenu();
-            choice = (byte) readNumber("Please enter number of choice: ", 1, 6);
-            if (choice != 6) {
-                displayFractionType(choice);
-                type = (byte) readNumber("Please enter number of choice: ", 1, 3);
-            }
-            switch (choice) {
+        System.out.println("Mixed Fraction and Fraction Computer");
+        System.out.println();
+        System.out.println("Choose an operation:" +
+                "1 - Add Fractions" +
+                "2 - Subtract Fractions" +
+                "3 - Multiply Fractions" +
+                "4 - Divide Fractions" +
+                "5 - Exit Program");
+
+                type = (byte) readNumber("Please enter number of choice: ", 1, 5);
+            switch (type) {
                 case 1 -> result = readFraction1(type).add(readFraction2(type));
                 case 2 -> result = readFraction1(type).subtract(readFraction2(type));
                 case 3 -> result = readFraction1(type).multiplyBy(readFraction2(type));
                 case 4 -> result = readFraction1(type).divideBy(readFraction2(type));
-                case 5 -> result = readFraction1(type).simplify();
-                case 6 -> {
-                    System.out.println("""
-                            Thank you for using Fraction Tester!
-                            Tester exiting...""");
+                case 5 -> {
+                    System.out.println("Program Termination");
+                    System.exit(0);
                     return;
                 }
             }
             System.out.printf("Result: %s or %.2f%n", result.simplify(), result.toDouble());
-            System.out.print("Please press enter to continue...");
+            System.out.print("Press [ENTER] to continue");
             kbd.nextLine();
         }
     }
 
-    /**
-    -----
-     */
-    private void displayMenu() {
-        System.out.println("");
-    }
 
     /**
 -----
      */
-    public int readNumber(String prompt, int min, int max) {
+    public int readNumber(String message, int min, int max) {
         int number = 0;
         boolean validInput = false;
         while (!validInput) {
-            System.out.printf("%s", prompt);
+            System.out.printf("%s", message);
             try {
                 number = Integer.parseInt(kbd.nextLine());
                 if (number >= min && number <= max) {
@@ -87,18 +81,17 @@ public class FractionTester {
                     System.out.printf("Please enter a number with a minimum of %d and a maximum of %d.%n", min, max);
                 }
             } catch (NumberFormatException exception) {
-                System.out.println("ERROR: Invalid number.");
-                System.out.println("Please try again.");
+                System.out.println("Invalid number input, please try again.");
             }
         }
         return number;
     }
 
-    public int readNumberNotZero(String prompt, int min, int max) {
+    public int readNumberNotZero(String message, int min, int max) {
         int number = 0;
         boolean validInput = false;
         while (!validInput) {
-            System.out.printf("%s", prompt);
+            System.out.printf("%s", message);
             try {
                 number = Integer.parseInt(kbd.nextLine());
                 if (number >= min && number <= max && number != 0) {
@@ -107,8 +100,7 @@ public class FractionTester {
                     System.out.printf("Please enter a NON-ZERO number with a minimum of %d and a maximum of %d.%n", min, max);
                 }
             } catch (NumberFormatException exception) {
-                System.out.println("ERROR: Invalid number.");
-                System.out.println("Please try again.");
+                System.out.println("Invalid number input, please try again.");
             }
         }
         return number;
@@ -117,31 +109,13 @@ public class FractionTester {
     /**
      ----
      */
-    private void displayFractionType(byte choice) {
-        if (choice != 5) {
-            System.out.println("""
-                    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
-                    |    Please choose fractions:    |
-                    |    1.) Two Im/Proper           |
-                    |    2.) Mixed and Im/Proper     |
-                    |    3.) Two Mixed               |
-                    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *""");
-        } else {
-            System.out.println("""
-                    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *
-                    |    Please choose fraction:     |
-                    |    1.) Im/Proper               |
-                    |    2.) Mixed                   |
-                    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ *""");
-        }
-    }
 
     public Fraction readFraction1(byte type) {
         Fraction result = new Fraction();
         int numerator = 0;
         int denominator = 1;
         int wholeNumber = 0;
-        System.out.println("Please enter a fraction (1)");
+        System.out.println("Input first Fraction");
         switch (type) {
             case 1:
                 numerator = readNumber("Please enter numerator: ", Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -164,7 +138,7 @@ public class FractionTester {
         int numerator = 0;
         int denominator = 1;
         int wholeNumber = 0;
-        System.out.println("Please enter a fraction (2)");
+        System.out.println("Input second Fraction");
         switch (type) {
             case 1:
             case 2:
